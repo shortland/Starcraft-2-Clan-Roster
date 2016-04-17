@@ -1,0 +1,35 @@
+<!-- add on more ranks in appropriate hierarchical structure -->
+
+<option value="" style='text-align:center;'>-- HC RANKS --</option>
+<option value="00President">President</option>
+<option value="01VicePresident">Vice President</option>
+<option value="03ForeignAdvisor">Foreign Advisor</option>
+<option value="02DomesticAdvisor">Domestic Advisor</option>
+<option value="04SecurityAdvisor">Security Advisor</option>
+
+<option value="" style='text-align:center;'>-- CRA RANKS --</option>
+<option value="06Commandant">Commandant</option>
+<option value="07DrillSergeant">Drill Sergeant</option>
+<option value="08FirstSergeant">First Sergeant</option>
+
+<option value="" style='text-align:center;'>-- UMC LEADER RANKS --</option>
+<option value="09FleetAdmiral">Fleet Admiral</option>
+<option value="10Admiral">Admiral</option>
+
+<option value="" style='text-align:center;'>-- KEEPER RANKS --</option>
+<option value="11Sky Marshal">Sky Marshal</option>
+<option value="12Premier">Premier</option>
+<option value="13Guardian">Guardian</option>
+<option value="14EliteEnforcer">Elite Enforcer</option>
+
+<option value="" style='text-align:center;'>-- UMC/SQUAD RANKS --</option>
+<option value="15ViceAdmiral">Vice Admiral</option>
+<option value="16Captain">Captain</option>
+<option value="17Lieutenant">Lieutenant</option>
+<option value="18Sergeant">Sergeant</option>
+<option value="19Corporal">Corporal</option>
+<option value="20Private">Private</option>
+<option value="21SeniorMember">Senior Member</option>
+<option value="22CrewMember">Crew Member</option>
+
+<!-- <option value=""></option> -->

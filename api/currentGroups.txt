@@ -1,0 +1,13 @@
+<!-- add on more groups in appropriate hierarchical structure -->
+
+<option value="HighCommand">High Command</option>
+<option value="Admirals">UMC Command</option>
+<option value="CRA">CRA</option>
+<option value="Keepers">Keepers</option>
+<option value="Alpha">Alpha</option>
+<option value="Bravo">Bravo</option>
+<option value="Charlie">Charlie</option>
+<option value="CSBVanguard">CSB Vanguard</option>
+<option value="Inactive">Inactive</option>
+
+<!-- <option value=""></option> -->
