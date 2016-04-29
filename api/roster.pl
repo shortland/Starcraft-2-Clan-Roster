@@ -7,31 +7,25 @@ my $offset;
 my $totalRequests;
 $totalRequests = 0;
 
-$apiKey = "XXXX";
+$apiKey = "XXXXXXXX";
 
 BEGIN
 {
-	$q = new CGI;
-	{   
-		print $q->header(-type =>'text/html', -charset => 'UTF-8');
-		$username = $q->param("username");
-		$offset = $q->param("offset"); # can leave blank... just for manual tinkering
-		#$league = $q->param("league"); # current league. or highest achieved league if unranked
-	}
-	open(STDERR, ">&STDOUT");
+    $q = new CGI;
+    {   
+        print $q->header(-type =>'text/html', -charset => 'UTF-8');
+        $username = $q->param("username");
+        $offset = $q->param("offset"); # can leave blank... just for manual tinkering
+        #$league = $q->param("league"); # current league. or highest achieved league if unranked
+    }
+    open(STDERR, ">&STDOUT");
 }
 if(!defined $username)
 {
-	print "no user defined";
-	exit;
+    print "no user defined";
+    exit;
 }
-
-#set these as your clan tags...
-$tag1 = "ConFed";
-$tag2 = "xCFx";
-$tag3 = "ThirdTag";
-
-$userAgent = "https://github.com/shortland";
+$userAgent = "https://github.com/shortland/Starcraft-2-Clan-Roster"; # set this to your own email, so he can contact you if he doesn't want you scraping anymore
 
 # Will require updating when/if rankedftw.com changes html, 
 # This is in no way using an api
@@ -42,7 +36,7 @@ sub getData
     my ($username, $offset) = @_;
     if($offset =~ /^()$/)
     {
-    	$offset = 0;
+        $offset = 0;
     }
     $totalRequests = $totalRequests + 1;
     $rankedRq = `curl -A $userAgent -s "http://www.rankedftw.com/search/?name=$username&offset=$offset"`;
@@ -62,7 +56,7 @@ sub getData
 sub screenForName
 {
     my ($rankedRq, $username, $offset) = @_;
-    if($rankedRq =~ /($tag1|$tag2|$tag3)/)
+    if($rankedRq =~ /(ConFed)|(xCFx)/)
     {
         #print "This offset has ConFed member: offset ( $offset )";
         checkForName($rankedRq, $username, $offset);
@@ -86,33 +80,28 @@ sub checkForName
     # remove a field
     $rankedRq =~ s/$rankedField//g;
     ($theirTag) = ($rankedField =~ /tag[^>]*>([^<]+)/);
-    if($theirTag =~ /^(\[$tag1\]|\[$tag2\]|\[$tag3\])$/)
+    if($theirTag =~ /^(\[ConFed\]|\[xCFx\])$/)
     {
-    	#print "This is our guy!";
-    	($ourGuyFTWLink) = ($rankedField =~ /href[^']*'([^']+)/);#'
-    	#print $ourGuyFTWLink;
-    	$totalRequests = $totalRequests + 1;
-    	$FTWHasBnet = `curl -A $userAgent -s "http://www.rankedftw.com$ourGuyFTWLink"`;
-    	($bNetRawLink) = ($FTWHasBnet =~ /headline[^=]*=([^=]+)/);#'
-    	$bNetRawLink =~ s/ title//g;
-    	$bNetRawLink =~ s/"//g;#"
-    	#http://us.battle.net/sc2/en/profile/3801254/1/Shortland/
-    	$bNetRawLink =~ s/http\:\/\/us\.battle\.net\/sc2\/en\/profile\///g;
-    	# 3801254/1/Shortland/
-    	$bNetAPILink = "https://us.api.battle.net/sc2/profile/" . $bNetRawLink . "?locale=en_US&apikey=$apiKey";
-    	print $bNetAPILink;#."<br/><br/>\n"; 
-    	#print $totalRequests." server requests";
+        ($ourGuyFTWLink) = ($rankedField =~ /href[^']*'([^']+)/);#'
+        $totalRequests = $totalRequests + 1;
+        $FTWHasBnet = `curl -A $userAgent -s "http://www.rankedftw.com$ourGuyFTWLink"`;
+        ($bNetRawLink) = ($FTWHasBnet =~ /bnet-link[^=]*=([^=]+)/);#'
+        $bNetRawLink =~ s/ title//g;
+        $bNetRawLink =~ s/"//g;#"
+        $bNetRawLink =~ s/http\:\/\/us\.battle\.net\/sc2\/en\/profile\///g;
+        $bNetAPILink = "https://us.api.battle.net/sc2/profile/" . $bNetRawLink . "?locale=en_US&apikey=$apiKey";
+        print $bNetAPILink;
     }
     else
     {
-    	$newoffset = $offset + 1;
-    	if($newoffset >= 1001)
-    	{
-    	    # this is a bit far fetched... but some (a lot) of people have duplicate names... 378 results for "Orion"
-    	    print "exceeded 1k offset searches... Couldn't locate";
-    	    exit;
-    	}
-    	#print "not found $username :::: $offset :::: $newoffset";
+        $newoffset = $offset + 1;
+        if($newoffset >= 1001)
+        {
+            # this is a bit far fetched... but some (a lot) of people have duplicate names... 378 results for "Orion"
+            print "exceeded 1k offset searches";
+            exit;
+        }
+        #print "not found $username :::: $offset :::: $newoffset";
         getData($username, $newoffset);
         exit;
     }
