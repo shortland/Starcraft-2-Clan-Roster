@@ -1,0 +1,32 @@
+<!-- <option value=""></option> -->
+
+<option value="" style="text-align:center;">-- RANK AWARDS --</option>
+<option value="00President">President</option>
+<option value="01Vice President">VicePresident</option>
+<option value="02CFA">CFA</option>
+<option value="03CDA">CDA</option>
+<option value="04CSA">CSA</option>
+<option value="05Admiral">Admiral</option>
+<option value="06Vice Admiral">ViceAdmiral</option>
+<option value="07Commandant">Commandant</option>
+<option value="08Drill Sergeant">DrillSergeant</option>
+<option value="09First Sergeant">FirstSergeant</option>
+<option value="10Sky Marshal">SkyMarshal</option>
+<option value="11Premier">Premier</option>
+<option value="12Elite Enforcer">EliteEnforcer</option>
+<option value="13Captain">Captain</option>
+<option value="14Lieutenant">Lieutenant</option>
+<option value="15Sergeant">Sergeant</option>
+
+<option value="" style="text-align:center;">-- NORMAL AWARDS --</option>
+<option value="16Confederation Star">Confederation Star</option>
+<option value="17Blue Service Medal">Blue Service Medal</option>
+<option value="18Gold Service Medal">Gold Service Medal</option>
+<option value="19Combat Pin">Combat Pin</option>
+<option value="20Purple Heart">Purple Heart</option>
+<!--<option value="21Confederation Star - Recruitment">Confederation Star - Recruitment</option>-->
+<option value="22Service Cross">Service Cross</option>
+<!--<option value="23Service Cross - Event Hosting">Service Cross - Event Hosting</option>-->
+<option value="24Medal of Shame">Medal of Shame</option>
+<option value="25Medal of Honor">Medal of Honor</option>
+<option value="26Legend">Legend</option>

@@ -1,0 +1,1 @@
+<div class="imaprofile" style="background-position: 14px 8px;width:130px;height:130px;background-repeat: no-repeat;background-image: url('../images/portraitUnranked.png');"><img style="position:relative;z-index:-1;left:25px;top:20px;" src="PORTRAIT_LINK"/></div>
